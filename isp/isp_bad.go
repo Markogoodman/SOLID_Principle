@@ -22,9 +22,9 @@ func (b *Book) GetContent() string {
 }
 
 // Save book content to disk
-func (b *Book) Save(path string) {
+func (b Book) Save(content string, path string) {
 	f, _ := os.Create(path)
-	f.WriteString(b.Content)
+	f.WriteString(content)
 	f.Sync()
 	f.Close()
 }
@@ -39,6 +39,13 @@ type WebPage struct {
 }
 
 func main() {
-	m := WebPage{Book{"?", "?", "?", "?", 0.0}, "title", "content", "url"}
-	m.Save("./output.txt")
+	// WebPage depends on some unnecessary fields (Book.Price Book.Author ...).
+
+	m := WebPage{Book{}, "title", "content", "url"}
+	m.Save(m.Content, "./output.txt")
+
+	// m := WebPage{"title", "content", "url"}
+	// b := Book{...}
+	// b.Save(m.Content, "./output.txt")
+
 }
