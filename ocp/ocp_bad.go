@@ -5,17 +5,9 @@ type Book struct {
 	Pages int
 }
 
-func (b *Book) GetPages() int {
-	return b.Pages
-}
-
 type Magazine struct {
 	Title string
 	Pages int
-}
-
-func (m *Magazine) GetPages() int {
-	return m.Pages
 }
 
 type PriceCalculator struct {
@@ -27,11 +19,11 @@ func (pc *PriceCalculator) Sum(items []interface{}) int {
 	for _, item := range items {
 		switch i := item.(type) {
 		case Book:
-			sum += i.GetPages() * 5
+			sum += i.Pages * 5
 		case Magazine:
-			sum += i.GetPages() * 3
+			sum += i.Pages * 3
 		}
-		// Bad: once you have new item, this function should be modified
+		// Bad: once you have a new item, this function should be modified
 	}
 	return sum
 }

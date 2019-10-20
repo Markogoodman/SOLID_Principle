@@ -5,11 +5,10 @@ import (
 )
 
 type Book struct {
-	Title     string
-	Content   string
-	Author    string
-	Publisher string
-	Price     float32
+	Title   string
+	Content string
+	Author  string
+	Price   float32
 }
 
 // Manage book information
@@ -22,7 +21,7 @@ func (b *Book) GetContent() string {
 }
 
 // Save book content to disk
-func (b Book) Save(content string, path string) {
+func (b *Book) Save(content string, path string) {
 	f, _ := os.Create(path)
 	f.WriteString(content)
 	f.Sync()
@@ -30,7 +29,7 @@ func (b Book) Save(content string, path string) {
 }
 
 // What if WebPage needs to save content.
-// WebPage depends on some unnecessary fields (Book.Price Book.Author ...).
+// Redundant code or unnecessary fields (Book.Price Book.Author ...).
 type WebPage struct {
 	Book
 	Title   string
@@ -39,13 +38,6 @@ type WebPage struct {
 }
 
 func main() {
-	// WebPage depends on some unnecessary fields (Book.Price Book.Author ...).
-
 	m := WebPage{Book{}, "title", "content", "url"}
 	m.Save(m.Content, "./output.txt")
-
-	// m := WebPage{"title", "content", "url"}
-	// b := Book{...}
-	// b.Save(m.Content, "./output.txt")
-
 }

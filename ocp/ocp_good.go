@@ -9,10 +9,6 @@ type Book struct {
 	Pages int
 }
 
-func (b *Book) GetPages() int {
-	return b.Pages
-}
-
 func (b *Book) GetPrice() int {
 	return b.Pages * 5
 }
@@ -20,10 +16,6 @@ func (b *Book) GetPrice() int {
 type Magazine struct {
 	Title string
 	Pages int
-}
-
-func (m *Magazine) GetPages() int {
-	return m.Pages
 }
 
 func (m *Magazine) GetPrice() int {
